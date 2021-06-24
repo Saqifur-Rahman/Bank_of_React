@@ -4,12 +4,12 @@ import {Link} from 'react-router-dom';
 class UserProfile extends Component {
   render() {
     return (
-        <div>
+        <div style={{marginLeft: 20}}>
           <h1>User Profile</h1>
 
-          <div>Username: {this.props.userName}</div>
-          <div>Member Since: {this.props.memberSince}</div>
-
+          <div>Username: <b>{this.props.userName}</b></div>
+          <div>Member Since: <b>{this.props.memberSince}</b></div>
+          <br />
           <Link to="/">Return to Home</Link>
         </div>
     );
