@@ -6,6 +6,7 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Debits from './components/Debits';
 import Credits from './components/Credits';
+import { v4 as uuidv4 } from 'uuid';
     
 class App extends Component {
 
@@ -38,6 +39,19 @@ class App extends Component {
     return parseFloat(total_credits-total_debits).toFixed(2)
   }
 
+  addDebit = (description, amount) => {
+    const d = new Date()
+    const transaction = {
+      "id": uuidv4(),
+      "description": description,
+      "amount": parseFloat(amount),
+      "date": d.toISOString()
+    }
+    this.state.debits.push(transaction)
+    // console.log(transcation)
+    this.setState({ accountBalance: this.calculateBalance() })
+  }
+
   async componentDidMount() {
     const debits_url = "https://moj-api.herokuapp.com/debits";
     const credits_url = "https://moj-api.herokuapp.com/credits";
@@ -61,7 +75,7 @@ class App extends Component {
         <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince}  accountBalance={this.state.accountBalance}/>
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const DebitsComponent = () => (<Debits debits={this.state.debits} accountBalance={this.state.accountBalance} />)
+    const DebitsComponent = () => (<Debits debits={this.state.debits} accountBalance={this.state.accountBalance} addDebit={this.addDebit} />)
     const CreditsComponent = () => (<Credits credits={this.state.credits} accountBalance={this.state.accountBalance}/>)
 
     // console.log(this.state.debits);
