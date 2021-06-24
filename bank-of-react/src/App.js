@@ -48,7 +48,18 @@ class App extends Component {
       "date": d.toISOString()
     }
     this.state.debits.push(transaction)
-    // console.log(transcation)
+    this.setState({ accountBalance: this.calculateBalance() })
+  }
+
+  addCredit = (description, amount) => {
+    const d = new Date()
+    const transaction = {
+      "id": uuidv4(),
+      "description": description,
+      "amount": parseFloat(amount),
+      "date": d.toISOString()
+    }
+    this.state.credits.push(transaction)
     this.setState({ accountBalance: this.calculateBalance() })
   }
 
@@ -76,7 +87,7 @@ class App extends Component {
     );
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
     const DebitsComponent = () => (<Debits debits={this.state.debits} accountBalance={this.state.accountBalance} addDebit={this.addDebit} />)
-    const CreditsComponent = () => (<Credits credits={this.state.credits} accountBalance={this.state.accountBalance}/>)
+    const CreditsComponent = () => (<Credits credits={this.state.credits} accountBalance={this.state.accountBalance} addCredit={this.addCredit}/>)
 
     // console.log(this.state.debits);
     // console.log(this.state.credits);
