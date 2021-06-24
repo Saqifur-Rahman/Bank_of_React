@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
 
 class Credits extends Component {
@@ -8,9 +9,10 @@ class Credits extends Component {
 
                 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
                 <h1>Credits:</h1>
-
+                
                 <Link to="/">Return to Home</Link>
-                <br /><br />
+                <AccountBalance accountBalance={this.props.accountBalance}/>
+                <br />
 
                 <table class="w3-table-all">
                     <tr>
@@ -30,9 +32,7 @@ class Credits extends Component {
                         )
                     )}
                 </table>
-                <br />  
 
-                <Link to="/">Return to Home</Link>
             </div>
         )
     }
