@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import { Card, Form, Col, Button } from 'react-bootstrap';
 
 class LogIn extends Component {
   constructor () {
@@ -34,18 +35,45 @@ class LogIn extends Component {
     }
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="userName">User Name</label>
-            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
-          </div>
-          <button>Log In</button>
-        </form>
+      <div style={{marginLeft: '1%'}}>
+        <h1>Login:</h1>
+        <br />
+
+        {/* Form for mock Sign in */}
+        <Card style={{width: '25%'}}>
+          <Card.Body>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Row>
+                <Col>
+                  <Form.Group className="mb-3" controlId="userName">
+                    <Form.Control
+                      type="text"
+                      placeholder="Username"
+                      name="userName"
+                      onChange={this.handleChange} 
+                      value={this.state.user.userName}
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Row>
+              <Form.Row>
+                <Col>
+                  <Form.Group className="mb-3" controlId="password">
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                    />
+                  </Form.Group>
+                </Col>
+              </Form.Row>
+              <Button variant="primary mt-3" size="sm" type="submit">
+                  Login
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+
       </div>
     )
   }
