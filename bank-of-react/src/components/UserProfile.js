@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
+import { ListGroup, Button } from 'react-bootstrap';
 
 class UserProfile extends Component {
   render() {
@@ -8,11 +9,21 @@ class UserProfile extends Component {
         <div style={{marginLeft: 20}}>
           <h1>User Profile</h1>
 
-          <div>Username: <b>{this.props.userName}</b></div>
-          <div>Member Since: <b>{this.props.memberSince}</b></div>
-          <AccountBalance accountBalance={this.props.accountBalance}/>
+          <ListGroup style={{width: 400, padding: 5, paddingLeft: 0}}>
+              <ListGroup.Item action>
+                <div>Username: <b>{this.props.userName}</b></div>
+              </ListGroup.Item>
+              <ListGroup.Item action>
+                <div>Member Since: <b>{this.props.memberSince}</b></div>
+              </ListGroup.Item>
+              <ListGroup.Item action>
+                  <AccountBalance accountBalance={this.props.accountBalance}/>
+              </ListGroup.Item>
+          </ListGroup>
           <br />
-          <Link to="/">Return to Home</Link>
+
+          <Link to="/"><Button variant="primary" size="sm">Return to Home</Button></Link>
+
         </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
+import { ListGroup, Button } from 'react-bootstrap';
 
 class Credits extends Component {
     render() {
@@ -10,8 +11,12 @@ class Credits extends Component {
                 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
                 <h1>Credits:</h1>
                 
-                <Link to="/">Return to Home</Link>
-                <AccountBalance accountBalance={this.props.accountBalance}/>
+                <Link to="/"><Button variant="primary" size="sm">Return to Home</Button></Link>
+                <ListGroup style={{width: 175, padding: 5, paddingLeft: 0}}>
+                    <ListGroup.Item action> 
+                        <AccountBalance accountBalance={this.props.accountBalance}/>
+                    </ListGroup.Item>
+                </ListGroup>
                 <br />
 
                 <table class="w3-table-all">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AccountBalance from './AccountBalance';
 import {Link} from 'react-router-dom';
+import { Button, ListGroup } from 'react-bootstrap';
 
 class Home extends Component {
     render() {
@@ -11,16 +12,20 @@ class Home extends Component {
             <h1>Bank of React</h1>
 
             <div>
-                <Link to="/userProfile">User Profile</Link>
+                <Link to="/userProfile"><Button variant="info my-2" size="sm">User Profile</Button></Link>
             </div>
             <div>
-                <AccountBalance accountBalance={this.props.accountBalance}/>
+                <ListGroup style={{width: 175, padding: 10, paddingLeft: 0}}>
+                    <ListGroup.Item action>
+                        <AccountBalance accountBalance={this.props.accountBalance}/>
+                    </ListGroup.Item>
+                </ListGroup>
             </div>
             <div>
-                <Link to="/debits">Debits</Link>
+                <Link to="/debits"><Button variant="danger my-2" size="sm">Debits</Button></Link>
             </div>
             <div>
-                <Link to="/credits">Credits</Link>
+                <Link to="/credits"><Button variant="success my-2" size="sm">Credits</Button></Link>
             </div>
             
         </div>
