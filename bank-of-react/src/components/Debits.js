@@ -102,6 +102,7 @@ class Debits extends Component {
 
                 <table className="w3-table-all" style={{width: '75%'}}>
                     <tr>
+                        <th>ID</th>
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Date</th>
@@ -109,6 +110,7 @@ class Debits extends Component {
                     {this.props.debits.map(debit => 
                         (   
                             <tr>
+                                <td>{debit.id} <t /> </td>
                                 <td>{debit.description} <t /> </td>
                                 <td>{debit.amount} <t /> </td>
                                 <td>{debit.date} <t /> </td>
