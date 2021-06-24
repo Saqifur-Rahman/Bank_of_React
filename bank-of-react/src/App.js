@@ -9,27 +9,29 @@ import Credits from './components/Credits';
 import { v4 as uuidv4 } from 'uuid';
     
 class App extends Component {
-
   constructor() {
     super();
-
     this.state = {
       accountBalance: "LOADING..",
       currentUser: {
         userName: 'joe_shmo',
         memberSince: '07/23/96',
       },
+      // state variable to store array of all debits
       debits: [],
+      // state variable to store array of all credits
       credits: []
     }
   }
 
+  // Function - For mock Sign in 
   mockLogIn = (logInInfo) => {
     const newUser = {...this.state.currentUser}
     newUser.userName = logInInfo.userName
     this.setState({currentUser: newUser})
   }
 
+  // Function - To calculate the latest accountBalance
   calculateBalance =  () => {
     let total_debits = 0
     let total_credits = 0
@@ -39,6 +41,7 @@ class App extends Component {
     return parseFloat(total_credits-total_debits).toFixed(2)
   }
 
+  // Function - Add new debit transaction and update
   addDebit = (description, amount) => {
     const d = new Date()
     const transaction = {
@@ -51,6 +54,7 @@ class App extends Component {
     this.setState({ accountBalance: this.calculateBalance() })
   }
 
+  // Function - Add new credit transaction and update
   addCredit = (description, amount) => {
     const d = new Date()
     const transaction = {
@@ -63,6 +67,7 @@ class App extends Component {
     this.setState({ accountBalance: this.calculateBalance() })
   }
 
+  // lifecycle method where API requests should go
   async componentDidMount() {
     const debits_url = "https://moj-api.herokuapp.com/debits";
     const credits_url = "https://moj-api.herokuapp.com/credits";
@@ -88,9 +93,6 @@ class App extends Component {
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
     const DebitsComponent = () => (<Debits debits={this.state.debits} accountBalance={this.state.accountBalance} addDebit={this.addDebit} />)
     const CreditsComponent = () => (<Credits credits={this.state.credits} accountBalance={this.state.accountBalance} addCredit={this.addCredit}/>)
-
-    // console.log(this.state.debits);
-    // console.log(this.state.credits);
 
     return (
       <Router>

@@ -16,6 +16,7 @@ class Debits extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    // Function - track input changes and set to state variables
     handleChange = (e) => {
         const target = e.target
         const value = target.value
@@ -24,6 +25,7 @@ class Debits extends Component {
         this.setState({ [name]: value })
     }
 
+    // Function - handle validation and make transcations after form submission
     handleSubmit = (e) => {
         // alert('Description: '+this.state.description+', Amount: '+this.state.amount);
         e.preventDefault();
@@ -34,11 +36,13 @@ class Debits extends Component {
             return this.setState({redirect: true})
         }
 
+        // add new debit transcation
         this.props.addDebit(this.state.description, this.state.amount)
         this.setState({redirect: true})
     }
 
     render() {
+        // reset state variables after successful transaction
         if (this.state.redirect) {
             this.setState({ 
                 description: '', 
@@ -54,6 +58,7 @@ class Debits extends Component {
                 <h1>Debits:</h1>
                 <br />
 
+                {/* Form to enter new debit details */}
                 <Card style={{width: '75%'}}>
                     <Card.Body>
                         <Row>
@@ -100,6 +105,7 @@ class Debits extends Component {
                 </Card>
                 <br />
 
+                {/* Table - Displays details of all Debits */}
                 <table className="w3-table-all" style={{width: '75%'}}>
                     <tr>
                         <th>ID</th>

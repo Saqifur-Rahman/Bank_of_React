@@ -11,11 +11,11 @@ class Credits extends Component {
             amount: null,
             redirect: false
         }
-
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    // Function - track input changes and set to state variables
     handleChange = (e) => {
         const target = e.target
         const value = target.value
@@ -24,6 +24,7 @@ class Credits extends Component {
         this.setState({ [name]: value })
     }
 
+    // Function - handle validation and make transcations after form submission
     handleSubmit = (e) => {
         // alert('Description: '+this.state.description+', Amount: '+this.state.amount);
         e.preventDefault();
@@ -34,11 +35,13 @@ class Credits extends Component {
             return this.setState({redirect: true})
         }
 
+        // add new credit transcation
         this.props.addCredit(this.state.description, this.state.amount)
         this.setState({redirect: true})
     }
 
     render() {
+        // reset state variables after successful transaction
         if (this.state.redirect) {
             this.setState({ 
                 description: '', 
@@ -54,6 +57,7 @@ class Credits extends Component {
                 <h1>Credits:</h1>
                 <br />
                 
+                {/* Form to enter new credit details */}
                 <Card style={{width: '75%'}}>
                     <Card.Body>
                         <Row>
@@ -100,6 +104,7 @@ class Credits extends Component {
                 </Card>
                 <br />
 
+                {/* Table - Displays details of all Credits */}
                 <table class="w3-table-all" style={{width: '75%'}}>
                     <tr>
                         <th>ID</th>
